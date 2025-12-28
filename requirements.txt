@@ -1,2 +1,25 @@
-django
-pillow
+# Django and Core
+Django==5.2.8
+Pillow==10.2.0
+
+# Channels & WebSocket Support
+channels==4.3.2
+daphne==4.2.1
+
+# ASGI & Async
+asgiref==3.11.0
+twisted==25.5.0
+autobahn==25.12.2
+
+# Database & ORM
+sqlparse==0.5.3
+
+# Utilities
+tzdata==2025.2
+attrs==25.4.0
+
+# Development (optional)
+# Uncomment for local development
+# django-debug-toolbar==4.2.0
+# black==23.12.0
+# flake8==6.1.0
