@@ -4,10 +4,9 @@ from django.db.models import Q
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .models import Post, Category, Message, User
+from .models import Post, Category, Message, User, PrivateMessage
 from .forms import PostForm, CustomUserCreationForm, CustomUserUpdateForm
 from django.views.decorators.http import require_POST
-from .models import PrivateMessage
 # Create your views here.
 
 
