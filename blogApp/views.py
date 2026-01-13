@@ -3,6 +3,7 @@ from django.http import HttpResponse, JsonResponse
 from django.db.models import Q
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
+from asgiref.sync import database_sync_to_async
 from django.contrib import messages
 from .models import Post, Category, Message, User, PrivateMessage
 from .forms import PostForm, CustomUserCreationForm, CustomUserUpdateForm
@@ -240,6 +241,7 @@ def downvote_post_view(request, pk):
 
 
 @login_required(login_url='login')
+@database_sync_to_async
 def private_messages_view(request, username):
     other = get_object_or_404(User, username=username)
     if request.user == other:
@@ -258,6 +260,7 @@ def private_messages_view(request, username):
 
 @login_required(login_url='login')
 @require_POST
+@database_sync_to_async
 def send_private_message_view(request, username):
     other = get_object_or_404(User, username=username)
     body = request.POST.get('body', '').strip()

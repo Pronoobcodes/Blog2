@@ -4,7 +4,7 @@ from channels.layers import get_channel_layer
 from django.contrib.auth import get_user_model
 from channels.db import database_sync_to_async
 
-User = get_user_model()
+
 
 
 # class ChatConsumer(AsyncWebsocketConsumer):
@@ -111,6 +111,7 @@ class PrivateChatConsumer(AsyncWebsocketConsumer):
 
     @database_sync_to_async
     def save_private_message(self, sender_username, recipient_username, body):
+        User = get_user_model()
         try:
             sender = User.objects.get(username=sender_username)
             recipient = User.objects.get(username=recipient_username)
@@ -121,6 +122,7 @@ class PrivateChatConsumer(AsyncWebsocketConsumer):
     
     @database_sync_to_async
     def get_user_id(self, username):
+        User = get_user_model()
         try:
             return User.objects.get(username=username).id
         except User.DoesNotExist:
